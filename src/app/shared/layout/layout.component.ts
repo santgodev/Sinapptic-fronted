@@ -44,10 +44,9 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     ngOnInit(): void {
         const user = this.authService.getCurrentUser();
         //modulos
-        this.moduloService.traerModulos().subscribe((modulos)=>{
-            
-            console.log(this.modulos)
+        this.moduloService.datosModulo2(2).subscribe((modulos)=>{
             this.modulos=modulos
+            console.log(modulos)
 
         })
         this.isAdmin = user.isAdmin;
