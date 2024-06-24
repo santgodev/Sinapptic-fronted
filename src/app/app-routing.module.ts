@@ -17,7 +17,7 @@ const appRoutes: Routes = [
     loadChildren: () => import('./features/customers/customers.module').then(m => m.CustomersModule),
   },
   {
-    path: 'users',
+    path: 'ver_usuarios',
     loadChildren: () => import('./features/users/users.module').then(m => m.UsersModule),
   },
   {

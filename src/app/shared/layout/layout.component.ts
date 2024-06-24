@@ -1,13 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Observable, timer } from 'rxjs';
+import { Observable, elementAt, timer } from 'rxjs';
 import { Subscription } from 'rxjs';
 
- import { AuthenticationService } from 'src/app/core/services/auth.service';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { SpinnerService } from '../../core/services/spinner.service';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { ModuloService } from 'src/app/core/services/modulo.service';
-import { moduloModel } from 'src/app/core/models/moduloModel';
+import { componentModel, moduloModel, value } from 'src/app/core/models/moduloModel';
 
 @Component({
     selector: 'app-layout',
@@ -21,10 +21,9 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     showSpinner: boolean = false;
     userName: string = "";
     isAdmin: boolean = false;
-
     //modulos
-    modulos!:moduloModel[];
-
+    modulos: moduloModel[] = [];
+    componentes: componentModel[] = [];
     private autoLogoutSubscription: Subscription = new Subscription;
 
     constructor(private changeDetectorRef: ChangeDetectorRef,
@@ -32,7 +31,8 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
         public spinnerService: SpinnerService,
         private authService: AuthenticationService,
         private authGuard: AuthGuard,
-        private moduloService:ModuloService
+        private moduloService: ModuloService
+
     ) {
 
         this.mobileQuery = this.media.matchMedia('(max-width: 1000px)');
@@ -44,11 +44,20 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     ngOnInit(): void {
         const user = this.authService.getCurrentUser();
         //modulos
-        this.moduloService.datosModulo2(2).subscribe((modulos)=>{
-            this.modulos=modulos
-            console.log(modulos)
+        this.moduloService.datosModulos(1).subscribe((modulos) => {
+
+            modulos.forEach(modulo => {
+                modulo.value = new value();
+            });
+            this.modulos = modulos
+            console.log(this.modulos)
 
         })
+        this.moduloService.datosComponentes(1).subscribe((componentes) => {
+            console.log(componentes)
+            this.componentes=componentes
+        })
+
         this.isAdmin = user.isAdmin;
         this.userName = user.fullName;
 
@@ -57,6 +66,9 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
         this.autoLogoutSubscription = timer$.subscribe(() => {
             this.authGuard.canActivate();
         });
+
+        // Para lograr desplegar los Modulos con sus respectivos componentes
+
     }
 
     ngOnDestroy(): void {
@@ -68,4 +80,12 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     ngAfterViewInit(): void {
         this.changeDetectorRef.detectChanges();
     }
+
+    desplegar(modulo: moduloModel) {
+        modulo.value.cambiarValor()
+    }
+    filtrarComponentes(idModulo: number): componentModel[] {
+        return this.componentes.filter(componente => componente.ID_MODULO === idModulo);
+      }
+    
 }

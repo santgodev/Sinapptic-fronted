@@ -60,12 +60,38 @@
 
       <mat-nav-list>
         <h3 mat-subheader>Home</h3>
-
-        <a mat-list-item *ngFor="let modulo of modulos" [routerLink]="modulo.RUTA">
-          <mat-icon mat-list-icon>{{modulo.ICONO}}</mat-icon>
-          <p mat-line>{{modulo.TITULO}}</p>
+        <a mat-list-item>
+          <mat-icon mat-list-icon>
+            event
+          </mat-icon>
+          <p mat-line>Inicio</p>
         </a>
-        
+
+        <mat-nav-list>
+          <ng-container *ngFor="let modulo of modulos">
+            <mat-list >
+              <!-- Encabezado del módulo -->
+              <mat-list-item (click)="desplegar(modulo)">
+                <mat-icon mat-list-icon>{{ modulo.ICONO }}</mat-icon>
+                <p mat-line>{{ modulo.TITULO }}</p>
+              </mat-list-item>
+
+              <!-- Contenido desplegable -->
+              <div class="gris "  [ngClass]="{'expandido': modulo.value.value}" *ngIf="modulo.value.value">
+                <mat-list>
+                  <mat-list-item *ngFor="let componente of filtrarComponentes(modulo.ID_MODULO)" [routerLink]="componente.RUTA" role="listitem">
+                    <mat-icon mat-list-icon>{{ componente.ICONO_COMPONENTE }}</mat-icon>
+                    <p mat-line>{{ componente.NOMBRE_COMPONENTE }}</p>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+            </mat-list>
+          </ng-container>
+        </mat-nav-list>
+
+
+
+
 
         <mat-divider></mat-divider>
 
