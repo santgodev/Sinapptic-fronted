@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, observable } from 'rxjs';
-import { componentModel, moduloModel, usuario } from '../models/moduloModel';
+import { Usuario, componentModel, moduloModel, usuario } from '../models/moduloModel';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +30,8 @@ export class ModuloService {
     return this.http.post<componentModel[]>('http://localhost:8080/componentes/autorizados', data);
   }
 
-  listarUsuario(): Observable<usuario[]> {
-    return this.http.get<usuario[]>('http://localhost:8080/usuarios')
+  listarUsuario(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>('http://localhost:8080/usuarios')
   }
 
 }

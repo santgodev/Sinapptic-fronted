@@ -52,11 +52,11 @@ export class LoginComponent implements OnInit {
                     } else {
                         localStorage.removeItem('savedUserEmail');
                     }
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/dashboard']);
                 },
                 error => {
-                    this.notificationService.openSnackBar(error.error);
-                    this.loading = false;
+                    this.notificationService.openSnackBar('¡Usuario o contraseña incorrecta!');
+                    
                 }
             );
     }

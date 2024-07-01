@@ -9,14 +9,14 @@ export class AdminGuard  {
         private authService: AuthenticationService) { }
 
     canActivate() {
-        // const user = this.authService.getCurrentUser();
+         const user = this.authService.getCurrentUser();
 
-        // if (user && user.isAdmin) {
-        //     return true;
+        if (user && user.isAdmin) {
+            return true;
 
-        // } else {
-        //     this.router.navigate(['/']);
-        //     return false;
-        // }
+         } else {
+            this.router.navigate(['/']);
+             return false;
+         }
     }
 }
