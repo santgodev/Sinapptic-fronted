@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { NGXLogger } from 'ngx-logger';
-import { usuario } from 'src/app/core/models/moduloModel';
+import { Usuario, usuario } from 'src/app/core/models/moduloModel';
 import { ModuloService } from 'src/app/core/services/modulo.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 
@@ -12,7 +12,7 @@ import { NotificationService } from 'src/app/core/services/notification.service'
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  usuarios: usuario[] = [];
+  usuarios: Usuario[] = [];
   constructor(
     private usuario: ModuloService,
     private logger: NGXLogger,

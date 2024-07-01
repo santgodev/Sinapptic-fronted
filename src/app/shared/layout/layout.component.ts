@@ -42,8 +42,9 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngOnInit(): void {
+        this.authService.login('camilo@example.com','contraseña2').subscribe((data)=>{console.log(data)})
+        console.log(localStorage.getItem('currentUser'))
         const user = this.authService.getCurrentUser();
-        //modulos
         this.moduloService.datosModulos(1).subscribe((modulos) => {
 
             modulos.forEach(modulo => {
@@ -66,7 +67,6 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
         this.autoLogoutSubscription = timer$.subscribe(() => {
             this.authGuard.canActivate();
         });
-
         // Para lograr desplegar los Modulos con sus respectivos componentes
 
     }

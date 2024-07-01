@@ -5,7 +5,10 @@ import * as jwt_decode from 'jwt-decode';
 import * as moment from 'moment';
 
 import { environment } from '../../../environments/environment';
-import { of, EMPTY } from 'rxjs';
+import { of, EMPTY, Observable } from 'rxjs';
+import { co, dA, em } from '@fullcalendar/core/internal-common';
+import { responseToken } from '../models/moduloModel';
+import { Token } from '@angular/compiler';
 
 @Injectable({
     providedIn: 'root'
@@ -16,27 +19,27 @@ export class AuthenticationService {
         @Inject('LOCALSTORAGE') private localStorage: Storage) {
     }
 
-    login(email: string, password: string) {
-        return of(true)
-            // .pipe(delay(1000),
-            //     map((/*response*/) => {
-            //         // set token property
-            //         // const decodedToken = jwt_decode(response['token']);
-
-            //         // store email and jwt token in local storage to keep user logged in between page refreshes
-            //         this.localStorage.setItem('currentUser', JSON.stringify({
-            //             token: 'aisdnaksjdn,axmnczm',
-            //             isAdmin: true,
-            //             email: 'john.doe@gmail.com',
-            //             id: '12312323232',
-            //             alias: 'john.doe@gmail.com'.split('@')[0],
-            //             expiration: moment().add(1, 'days').toDate(),
-            //             fullName: 'John Doe'
-            //         }));
-
-            //         return true;
-            //     }));
+    login(email: string, password: string): Observable<boolean> {
+        const data = { correo:email, contraseña: password };
+    
+        return this.http.post<responseToken>('http://localhost:8080/auth/login', data).pipe(
+            delay(2000),
+            map(response => {
+                const userData = {
+                    token: response.token,
+                    isAdmin: true, 
+                    email: response.data.Correo,
+                    id: response.data.Id,
+                    alias: response.data.Correo.split('@')[0],
+                    expiration: moment().add(1, 'days').toDate(),
+                    fullName: `${response.data.Nombre} ${response.data.Apellido}`
+                };
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+                return true;
+            })
+        );
     }
+    
 
     logout(): void {
         // clear token remove user from local storage to log user out
@@ -44,17 +47,22 @@ export class AuthenticationService {
     }
 
     getCurrentUser(): any {
-        // TODO: Enable after implementation
-        // return JSON.parse(this.localStorage.getItem('currentUser'));
-        return {
-            isAdmin: true,
-            email: 'john.doe@gmail.com',
-            id: '12312323232',
-            alias: 'john.doe@gmail.com'.split('@')[0],
-            expiration: moment().add(1, 'days').toDate(),
-            fullName: 'John Doe'
-        };
+        const currentUserString = localStorage.getItem('currentUser');
+        if (currentUserString) {
+            const currentUser = JSON.parse(currentUserString);
+            return {
+                token:currentUser.token,
+                isAdmin: currentUser.isAdmin,
+                email: currentUser.email,
+                id: currentUser.id,
+                alias: currentUser.alias,
+                expiration: moment(currentUser.expiration),
+                fullName: currentUser.fullName
+            };
+        }
+        return null; // O maneja el caso donde no hay usuario almacenado
     }
+    
 
     passwordResetRequest(email: string) {
         return of(true).pipe(delay(1000));

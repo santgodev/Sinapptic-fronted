@@ -23,9 +23,32 @@ export class value {
 
 }
 export interface usuario {
-  NOMBRE: string,
-  APELLIDO: string,
-  CORREO: string,
-  IMG_URL: string,
-  DESCRIPCION:string
+  token: string;
+  isAdmin: boolean;
+  email: string;
+  id: string;
+  alias: string;
+  expiration: Date;
+  fullName: string;
 }
+export interface Usuario {
+  NOMBRE: string;
+  APELLIDO: boolean;
+  CORREO: string;
+  IMG_URL: string;
+  DESCRIPCION: string;
+}
+
+export interface responseToken {
+  mesagge: string;
+  token: string;
+  data: {
+    Nombre: string;
+    Id: string;
+    Apellido: string;
+    Correo: string;
+    Img:string,
+    Descripcion:string
+  };
+}
+
