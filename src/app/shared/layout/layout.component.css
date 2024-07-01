@@ -66,3 +66,16 @@ a.mat-list-item.active {
   position: absolute;
   bottom: 0;
 }
+/* En tu archivo de estilos CSS (por ejemplo, styles.css o styles.scss) */
+/* Estilos CSS para la animación */
+.gris {
+  background-color: #fbf5f5; /* Color de fondo gris */
+  overflow: hidden; /* Oculta el contenido fuera del contenedor */
+  max-height: 0; /* Inicialmente oculta el contenido */
+  transition: max-height 0.3s ease-out; /* Transición suave de altura */
+  padding-left: 15px;
+}
+
+.expandido {
+  max-height: 500px; /* Altura máxima cuando está expandido */
+}

@@ -1,0 +1,28 @@
+/* styles.css */
+.product-image {
+    width: auto;
+    /* Ajusta el ancho de la imagen según tus necesidades */
+    height: 300px;
+    /* Permite que la altura se ajuste automáticamente manteniendo la proporción */
+    display: block;
+    /* Asegura que la imagen se comporte como un elemento de bloque */
+    margin: 0 auto;
+    /* Centra horizontalmente la imagen */
+}
+
+.example-card {
+    width: 300px;
+    /* Ancho del mat-card */
+    margin: 20px;
+    /* Margen exterior */
+    text-align: center;
+    /* Centrar el contenido */
+    display: inline-block;
+}
+
+
+.mat-card-actions {
+    display: flex;
+    justify-content: center;
+    /* Alineación a la derecha */
+}
