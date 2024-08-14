@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from 'src/app/shared/layout/layout.component';
 
 import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
+import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', component: DashboardHomeComponent },
+      { path: 'spinner', component: SpinnerComponent },
     ]
   }
 ];

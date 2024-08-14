@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class SpinnerService {
 
   visibility = new BehaviorSubject(false);
-
+  errors: BehaviorSubject<"exitoso" | "error" | ""> = new BehaviorSubject<"exitoso" | "error" | "">("");
   constructor() {
   }
 
@@ -18,4 +18,17 @@ export class SpinnerService {
   hide() {
     this.visibility.next(false);
   }
-}
+  exitoso(){
+    this.errors.next("exitoso");
+
+  }
+  error(){
+    this.errors.next("error");
+  }
+  reset(){
+    this.errors.next("");
+  }
+  }
+ 
+ 
+

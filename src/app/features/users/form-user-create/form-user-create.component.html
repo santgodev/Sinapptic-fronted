@@ -1,0 +1,77 @@
+<div class="modal-dialog modal-lg container">
+    <app-spinner></app-spinner>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="formModalLabel">
+                Crear usuario
+                <mat-icon class="modal-icon">person</mat-icon>
+            </h5>
+            <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close"
+                (click)="closeUserFormModal()"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formUser">
+                <div class="row">
+                    <div class="col-md-6 mb-3"
+                        [ngClass]="{'has-error': formUser.get('NOMBRE')?.invalid && formUser.get('NOMBRE')?.touched}">
+                        <label for="nombre" class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" formControlName="NOMBRE">
+                        <span *ngIf="formUser.get('NOMBRE')?.invalid && formUser.get('NOMBRE')?.touched"
+                            class="text-danger">✖</span>
+                    </div>
+                    <div class="col-md-6 mb-3"
+                        [ngClass]="{'has-error': formUser.get('APELLIDO')?.invalid && formUser.get('APELLIDO')?.touched}">
+                        <label for="apellido" class="form-label">Apellido:</label>
+                        <input type="text" class="form-control" id="apellido" name="apellido"
+                            formControlName="APELLIDO">
+                        <span *ngIf="formUser.get('APELLIDO')?.invalid && formUser.get('APELLIDO')?.touched"
+                            class="text-danger">✖</span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="correo" class="form-label">Correo:</label>
+                        <input type="email" class="form-control" id="correo" name="correo" formControlName="CORREO">
+                        <span
+                            *ngIf="formUser.get('CORREO')?.invalid && formUser.get('CORREO')?.touched || formUser.get('CORREO')?.hasError('email')"
+                            class="text-danger">✖</span>
+
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cc" class="form-label">CC:</label>
+                        <input type="text" class="form-control" id="cc" name="cc" formControlName="CC">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="telefono" class="form-label">Teléfono:</label>
+                        <input type="tel" class="form-control" id="telefono" name="telefono" formControlName="TELEFONO">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="contrasena" class="form-label">Contraseña:</label>
+                        <input type="password" class="form-control" id="contrasena" name="contrasena"
+                            formControlName="CONTRASEÑA">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lang" class="form-label">Lenguaje</label>
+                        <select class="form-select" name="lenguajes" id="lang" formControlName="ROL">
+                            <option value=javascript>JavaScript</option>
+                            <option value=1>PHP</option>
+                            <option value=2>Java</option>
+                            <option value=3>Golang</option>
+                            <option value=1>Python</option>
+                            <option value=2>C#</option>
+                            <option value=3>C++</option>
+                            <option value=1>Erlang</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+                        <label for="img_url" class="form-label">URL de la Imagen:</label>
+                        <input type="url" class="form-control" id="img_url" name="img_url" formControlName="IMG_URL">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-custom  w-100"
+                    (click)="crearUsuario(formUser.getRawValue())">Crear</button>
+            </form>
+        </div>
+    </div>
+</div>

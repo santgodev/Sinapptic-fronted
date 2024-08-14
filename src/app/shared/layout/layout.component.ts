@@ -42,17 +42,12 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngOnInit(): void {
-        this.authService.login('camilo@example.com','contraseña2').subscribe((data)=>{console.log(data)})
-        console.log(localStorage.getItem('currentUser'))
         const user = this.authService.getCurrentUser();
         this.moduloService.datosModulos(1).subscribe((modulos) => {
-
             modulos.forEach(modulo => {
                 modulo.value = new value();
             });
             this.modulos = modulos
-            console.log(this.modulos)
-
         })
         this.moduloService.datosComponentes(1).subscribe((componentes) => {
             console.log(componentes)

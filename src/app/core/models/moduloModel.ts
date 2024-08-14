@@ -22,23 +22,23 @@ export class value {
   }
 
 }
-export interface usuario {
-  token: string;
-  isAdmin: boolean;
-  email: string;
-  id: string;
-  alias: string;
-  expiration: Date;
-  fullName: string;
-}
-export interface Usuario {
-  NOMBRE: string;
-  APELLIDO: boolean;
-  CORREO: string;
-  IMG_URL: string;
-  DESCRIPCION: string;
-}
 
+export interface Usuario {
+  ID?:string;
+  NOMBRE: string;
+  APELLIDO?:string;
+  CORREO: string;
+  CC?: string;
+  TELEFONO?:string;
+  CONTRASEÑA?:string;
+  ROL?: string;
+  IMG_URL: string;
+}
+export interface insertResponse
+{
+  messaje:string;
+  usuario:Usuario;
+}
 export interface responseToken {
   mesagge: string;
   token: string;

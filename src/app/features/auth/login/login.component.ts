@@ -4,6 +4,7 @@ import { UntypedFormControl, Validators, UntypedFormGroup } from '@angular/forms
 import { Title } from '@angular/platform-browser';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-login',
@@ -43,20 +44,23 @@ export class LoginComponent implements OnInit {
         const rememberMe = this.loginForm.get('rememberMe')?.value;
 
         this.loading = true;
-        this.authenticationService
-            .login(email.toLowerCase(), password)
+        this.authenticationService.login(email.toLowerCase(), password)
             .subscribe(
                 data => {
-                    if (rememberMe) {
-                        localStorage.setItem('savedUserEmail', email);
-                    } else {
-                        localStorage.removeItem('savedUserEmail');
-                    }
                     this.router.navigate(['/dashboard']);
+                    console.clear
                 },
-                error => {
-                    this.notificationService.openSnackBar('¡Usuario o contraseña incorrecta!');
-                    
+                (error: HttpErrorResponse) => {
+                    if (error.status === 401) {
+                        this.notificationService.openSnackBar('¡Usuario o contraseña incorrecta!');
+                        this.loading=false
+                    } else if (error.status === 500) {
+                        this.notificationService.openSnackBar('¡Error del servidor! Inténtelo más tarde.');
+                        this.loading=false
+                    } else {
+                        this.notificationService.openSnackBar('¡Ocurrió un error inesperado!');
+                        this.loading=false
+                    }
                 }
             );
     }

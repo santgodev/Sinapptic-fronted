@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
 
 @NgModule({
     declarations: [DashboardHomeComponent],
@@ -12,7 +13,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
         CommonModule,
         DashboardRoutingModule,
         SharedModule,
-        FullCalendarModule
+        FullCalendarModule,
+        
     ]
 })
 export class DashboardModule { }

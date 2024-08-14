@@ -66,6 +66,13 @@
           </mat-icon>
           <p mat-line>Inicio</p>
         </a>
+        <a mat-list-item [routerLink]="['/dashboard/spinner']">
+          <mat-icon mat-list-icon>
+            event
+          </mat-icon>
+          <p mat-line>Inicio</p>
+        </a>
+      
 
         <mat-nav-list>
           <ng-container *ngFor="let modulo of modulos">
@@ -75,7 +82,7 @@
                 <mat-icon mat-list-icon>{{ modulo.ICONO }}</mat-icon>
                 <p mat-line>{{ modulo.TITULO }}</p>
               </mat-list-item>
-
+              
               <!-- Contenido desplegable -->
               <div class="gris "  [ngClass]="{'expandido': modulo.value.value}" *ngIf="modulo.value.value">
                 <mat-list>

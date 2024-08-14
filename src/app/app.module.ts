@@ -9,7 +9,8 @@ import { CustomMaterialModule } from './custom-material/custom-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LoggerModule } from 'ngx-logger';
 import { environment } from '../environments/environment';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { environment } from '../environments/environment';
       serverLogLevel: environment.serverLogLevel
     })
   ],
+  providers:[{provide: HTTP_INTERCEPTORS, useClass:SpinnerInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

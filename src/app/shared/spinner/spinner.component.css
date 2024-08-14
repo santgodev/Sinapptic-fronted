@@ -1,0 +1,110 @@
+.lds-ripple,
+.lds-ripple div {
+    box-sizing: border-box;
+}
+
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ripple div {
+    position: absolute;
+    border: 4px solid currentColor;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 8px;
+        height: 8px;
+        opacity: 0;
+    }
+
+    4.9% {
+        top: 36px;
+        left: 36px;
+        width: 8px;
+        height: 8px;
+        opacity: 0;
+    }
+
+    5% {
+        top: 36px;
+        left: 36px;
+        width: 8px;
+        height: 8px;
+        opacity: 1;
+    }
+
+    100% {
+        top: 0;
+        left: 0;
+        width: 80px;
+        height: 80px;
+        opacity: 0;
+    }
+}
+
+
+.loading-text {
+    font-size: 2.6rem;
+    /* Tres veces más grande que el original (1.2rem * 3) */
+    font-weight: 500;
+}
+
+
+/*el siguiente codigo cumple la funcion de adaptar un elemento al maximo de la pantalla y centrar un elemento*/
+.overlay {
+    color: rgb(20, 149, 182);
+    position: absolute;
+    /* Cambiado de fixed a absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(230, 234, 236, 0.8);
+    /* Añadido un poco de transparencia */
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overley {
+    color: rgb(20, 149, 182);
+    position: absolute;
+    /* Cambiado de fixed a absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(230, 234, 236, 0.8);
+    /* Añadido un poco de transparencia */
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mal {
+    font-size: medium;
+    color: #000;
+    background-color: rgb(245, 227, 227);
+    
+}
+.bien {
+    font-size: medium;
+    color: #000;
+    background-color: rgb(208, 235, 208);
+}

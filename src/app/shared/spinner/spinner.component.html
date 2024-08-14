@@ -1,0 +1,27 @@
+<div class="overlay" *ngIf="visivility$ | async">
+    <div class="lds-ripple">
+        <div></div>
+        <div></div>
+    </div>
+    <div class="loading-text">Cargando...</div>
+
+</div>
+<!-- Modal de éxito -->
+<div class="overley exito d-flex justify-content-center align-items-center" *ngIf="(errors$ | async) === 'exitoso'">
+    <div class="modal-content text-center p-4 w-50 h-98 bien">
+        <div class="loading-text success">
+            ¡Usuario agregado exitosamente!
+        </div>
+        <button class="btn btn-success mt-5" (click)="closeModal()">Cerrar</button>
+    </div>
+</div>
+
+<!-- Modal de error -->
+<div class="overley  d-flex justify-content-center align-items-center" *ngIf="(errors$ | async) === 'error'">
+    <div class="modal-content text-center p-4 w-50 h-98  mal">
+        <div class="loading-text danger ">
+            ¡Ha habido un error!
+        </div>
+        <button class="btn btn-danger mt-5" (click)="closeModal()">Cerrar</button>
+    </div>
+</div>
