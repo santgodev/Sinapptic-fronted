@@ -1,0 +1,68 @@
+<div class="modal-dialog modal-lg container">  
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="formModalLabel">
+          Crear cliente
+          <mat-icon class="modal-icon">add</mat-icon>
+        </h5>
+        <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close"
+          (click)="closeFormModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formCliente">
+          <div class="row">
+            <!-- NOMBRE_CLIENTE -->
+            <div class="col-md-6 mb-3"
+              [ngClass]="{'has-error': formCliente.get('NOMBRE_CLIENTE')?.invalid && formCliente.get('NOMBRE_CLIENTE')?.touched}">
+              <label for="NOMBRE_CLIENTE" class="form-label">NOMBRE DE CLIENTE</label>
+              <input type="text" class="form-control" id="NOMBRE_CLIENTE" name="NOMBRE_CLIENTE" formControlName="NOMBRE_CLIENTE">
+              <span *ngIf="formCliente.get('NOMBRE_CLIENTE')?.invalid && formCliente.get('NOMBRE_CLIENTE')?.touched"
+                class="text-danger">✖</span>
+            </div>
+
+            <!-- NIT -->
+            <div class="col-md-6 mb-3"
+              [ngClass]="{'has-error': formCliente.get('NIT')?.invalid && formCliente.get('NIT')?.touched}">
+              <label for="NIT" class="form-label">NIT</label>
+              <input type="text" class="form-control" id="NIT" name="NIT" formControlName="NIT">
+              <span *ngIf="formCliente.get('NIT')?.invalid && formCliente.get('NIT')?.touched"
+                class="text-danger">✖</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- TELEFONO -->
+            <div class="col-md-6 mb-3"
+              [ngClass]="{'has-error': formCliente.get('TELEFONO')?.invalid && formCliente.get('TELEFONO')?.touched}">
+              <label for="TELEFONO" class="form-label">TELÉFONO</label>
+              <input type="text" class="form-control" id="TELEFONO" name="TELEFONO" formControlName="TELEFONO">
+              <span *ngIf="formCliente.get('TELEFONO')?.invalid && formCliente.get('TELEFONO')?.touched"
+                class="text-danger">✖</span>
+            </div>
+
+            <!-- DIRECCION -->
+            <div class="col-md-6 mb-3"
+              [ngClass]="{'has-error': formCliente.get('DIRECCION')?.invalid && formCliente.get('DIRECCION')?.touched}">
+              <label for="DIRECCION" class="form-label">DIRECCIÓN</label>
+              <input type="text" class="form-control" id="DIRECCION" name="DIRECCION" formControlName="DIRECCION">
+              <span *ngIf="formCliente.get('DIRECCION')?.invalid && formCliente.get('DIRECCION')?.touched"
+                class="text-danger">✖</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- INFORMACION -->
+            <div class="col-md-12 mb-3"
+              [ngClass]="{'has-error': formCliente.get('INFORMACION')?.invalid && formCliente.get('INFORMACION')?.touched}">
+              <label for="INFORMACION" class="form-label">INFORMACIÓN</label>
+              <input type="text" class="form-control" id="INFORMACION" name="INFORMACION" formControlName="INFORMACION">
+              <span *ngIf="formCliente.get('INFORMACION')?.invalid && formCliente.get('INFORMACION')?.touched"
+                class="text-danger">✖</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-custom w-100" (click)="crearcliente(formCliente.getRawValue())" [disabled]="formCliente.invalid">Crear Cliente</button>
+        </form>
+      </div>
+    </div>
+  </div>

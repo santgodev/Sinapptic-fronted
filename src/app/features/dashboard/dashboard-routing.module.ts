@@ -6,14 +6,10 @@ import { DashboardHomeComponent } from './dashboard-home/dashboard-home.componen
 import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LayoutComponent,
-    children: [
-      { path: '', component: DashboardHomeComponent },
-      { path: 'spinner', component: SpinnerComponent },
-    ]
-  }
+
+
+  { path: '', component: DashboardHomeComponent },
+
 ];
 
 @NgModule({

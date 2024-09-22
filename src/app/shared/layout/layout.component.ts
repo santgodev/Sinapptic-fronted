@@ -73,8 +73,12 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
+        
+    }
+    ngAfterViewChecked(): void {
         this.changeDetectorRef.detectChanges();
     }
+    
 
     desplegar(modulo: moduloModel) {
         modulo.value.cambiarValor()

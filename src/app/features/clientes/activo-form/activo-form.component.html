@@ -1,0 +1,74 @@
+<div class="modal-dialog modal-lg container">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="formModalLabel">
+                Crear activo
+                <mat-icon class="modal-icon">person</mat-icon>
+            </h5>
+            <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close"
+                (click)="closeUserFormModal()"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formActivo">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="lang" class="form-label">Cliente</label>
+                        <select class="form-select" name="lenguajes" id="lang" formControlName="ID_CLIENTE">
+                            <option *ngFor="let cliente of clientes"  value={{cliente.ID_CLIENTE}} >{{cliente.NOMBRE_CLIENTE}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3"
+                        [ngClass]="{'has-error': formActivo.get('NOMBRE_ACTIVO')?.invalid && formActivo.get('NOMBRE_ACTIVO')?.touched}">
+                        <label for="NOMBRE_ACTIVO" class="form-label">TIPO</label>
+                        <input type="text" class="form-control" id="NOMBRE_ACTIVO" name="NOMBRE_ACTIVO"
+                            formControlName="NOMBRE_ACTIVO">
+                        <span
+                            *ngIf="formActivo.get('NOMBRE_ACTIVO')?.invalid && formActivo.get('NOMBRE_ACTIVO')?.touched"
+                            class="text-danger">✖</span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="CATEGORIA" class="form-label">CATEGORIA</label>
+                        <input type="email" class="form-control" id="CATEGORIA" name="CATEGORIA" formControlName="CATEGORIA">
+                        <span
+                            *ngIf="formActivo.get('CATEGORIA')?.invalid && formActivo.get('CATEGORIA')?.touched "
+                            class="text-danger">✖</span>
+
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="SERIAL" class="form-label">SERIAL</label>
+                        <input type="email" class="form-control" id="SERIAL" name="SERIAL" formControlName="SERIAL">
+                        <span
+                            *ngIf="formActivo.get('SERIAL')?.invalid && formActivo.get('SERIAL')?.touched "
+                            class="text-danger">✖</span>
+
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="ACCESORIOS" class="form-label">ACCESORIOS</label>
+                        <input type="email" class="form-control" id="ACCESORIOS" name="ACCESORIOS" formControlName="ACCESORIOS">
+                        <span
+                            *ngIf="formActivo.get('ACCESORIOS')?.invalid && formActivo.get('ACCESORIOS')?.touched "
+                            class="text-danger">✖</span>
+
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="INFORMACION" class="form-label">INFORMACION</label>
+                        <input type="email" class="form-control" id="INFORMACION" name="INFORMACION" formControlName="INFORMACION">
+                        <span
+                            *ngIf="formActivo.get('INFORMACION')?.invalid && formActivo.get('INFORMACION')?.touched "
+                            class="text-danger">✖</span>
+
+                    </div>
+
+                    <!-- <div class="col-md-6 mb-3">
+                        <label for="lang" class="form-label">Lenguaje</label>
+                        <select class="form-select" name="lenguajes" id="lang" formControlName="ROL">
+                            <option *ngFor="let rol of roles" value={{rol.ID_ROL}}>{{rol.NOMBRE_ROL}}</option>
+                        </select>
+                    </div> -->
+
+                </div>
+                <button type="submit" class="btn btn-custom  w-100" (click)="crearActivo(formActivo.getRawValue())">Agregar activo</button>
+            </form>
+        </div>
+    </div>
+</div>

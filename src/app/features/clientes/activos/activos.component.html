@@ -1,0 +1,81 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+    <div fxFlex="95%">
+
+        <button mat-flat-button class="rol" (click)="openClienteFormModal()"><mat-icon>add</mat-icon>Agregar activo</button>
+        <button (click)="listarActivosIdCliente(cliente.ID_CLIENTE!)"  
+        class="btn btn-{{cliente.COLOR_BOTON}} custom-material-btn"  
+        *ngFor="let cliente of clientes">
+  <mat-icon class="material-icons">list</mat-icon>{{cliente.NOMBRE_CLIENTE}}
+</button>
+        <table mat-table class="mat-elevation-z8" [dataSource]="activoService.Activos$">
+
+            <ng-container matColumnDef="ID_ACTIVO">
+                <th mat-header-cell *matHeaderCellDef> ID</th>
+                <td mat-cell *matCellDef="let element"> {{element.ID_ACTIVO}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="NOMBRE_ACTIVO">
+                <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+                <td mat-cell *matCellDef="let element"> {{element.NOMBRE_ACTIVO}} </td>
+            </ng-container>
+            <ng-container matColumnDef="USUARIO">
+                <th mat-header-cell *matHeaderCellDef> USUARIO ASIGNADO </th>
+                <td mat-cell *matCellDef="let element"> {{element.USUARIOiven}} </td>
+            </ng-container>
+            <ng-container matColumnDef="CATEGORIA">
+                <th mat-header-cell *matHeaderCellDef> CATEGORIA </th>
+                <td mat-cell *matCellDef="let element"> {{element.CATEGORIA}} </td>
+            </ng-container>
+            <ng-container matColumnDef="SERIAL">
+                <th mat-header-cell *matHeaderCellDef> SERIAL </th>
+                <td mat-cell *matCellDef="let element"> {{element.SERIAL}} </td>
+            </ng-container>
+            <ng-container matColumnDef="ACCESORIOS">
+                <th mat-header-cell *matHeaderCellDef> ACCESORIOS </th>
+                <td mat-cell *matCellDef="let element"> {{element.ACCESORIOS}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="ACCIONES">
+                <th mat-header-cell *matHeaderCellDef> ACCIONES </th>
+                <td mat-cell *matCellDef="let element; let i=index">
+                    <button id="edit" mat-flat-button>
+                        <mat-icon>create</mat-icon>
+                    </button>
+                    <button id="delete" mat-flat-button (click)="removeActivo(element.ID_ACTIVO)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button id="info" mat-flat-button>
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+
+        
+        <!-- <mat-card class="example-card" *ngFor="let usuario of usuarios" appearance="outlined">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{usuario.NOMBRE}}</mat-card-title>
+          <mat-card-subtitle>{{usuario.CORREO}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image class="product-image" [src]="usuario.IMG_URL" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            {{usuario.DESCRIPCION}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="mat-card-actions">
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card> -->
+
+
+    </div>
+</div>

@@ -1,6 +1,4 @@
 <div class="modal-dialog modal-lg container">
-    <app-spinner></app-spinner>
-
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="formModalLabel">
@@ -52,14 +50,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="lang" class="form-label">Lenguaje</label>
                         <select class="form-select" name="lenguajes" id="lang" formControlName="ROL">
-                            <option value=javascript>JavaScript</option>
-                            <option value=1>PHP</option>
-                            <option value=2>Java</option>
-                            <option value=3>Golang</option>
-                            <option value=1>Python</option>
-                            <option value=2>C#</option>
-                            <option value=3>C++</option>
-                            <option value=1>Erlang</option>
+                            <option *ngFor="let rol of roles"  value={{rol.ID_ROL}} >{{rol.NOMBRE_ROL}}</option>
                         </select>
                     </div>
 

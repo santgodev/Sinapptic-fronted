@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
-import { tap } from 'rxjs';
 import { Usuario } from 'src/app/core/models/moduloModel';
-import { SpinnerService } from 'src/app/core/services/spinner.service';
+import { rolModel } from 'src/app/core/models/rolModel';
+import { RolService } from 'src/app/core/services/rol.service';
 import { UserService } from 'src/app/core/services/user.service';
 @Component({
   selector: 'app-form-user-create',
@@ -17,8 +17,10 @@ export class FormUserCreateComponent implements OnInit {
      private matDialogRef:MatDialogRef<FormUserCreateComponent>,
       private matDialog:MatDialog,
       private UserService:UserService,
+      public rolService:RolService
     ) {
   }
+  roles:rolModel[]=[];
   /* La documentacion usada para realizar el formulario de este componente fue sacada de la siguiente pagina: 
   https://netbasal.com/typed-reactive-forms-in-angular-no-longer-a-type-dream-bf6982b0af28
   */
@@ -61,12 +63,13 @@ export class FormUserCreateComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.rolService.listarRoles().subscribe(roles=>{this.roles=roles})
   }
   closeUserFormModal(){
     this.matDialog.closeAll()
   }
   crearUsuario(Usuario:Usuario){
-    this.UserService.crearUsuario(Usuario).subscribe({next:((Usuario)=>{this.UserService.agregarUsuario(Usuario.usuario)})})
+    this.UserService.crearUsuario(Usuario).subscribe()
   }
 }
 

@@ -1,0 +1,63 @@
+/* Estilos generales para la tabla */
+table {
+    width: 100%;
+  }
+  
+  /* Estilo para las celdas de la tabla */
+  mat-cell, mat-header-cell {
+    text-align: center;
+    padding: 8px;
+  }
+  
+  /* Estilos para los botones en la columna de acciones */
+  #edit, #delete, #info {
+    min-width: 36px;
+    height: 36px;
+    padding: 0;
+    margin: 0 4px;
+    border-radius: 4px;
+  }
+  
+  #edit {
+    background-color: rgb(253, 186, 62);
+    color: white;
+  }
+  #info {
+    background-color: rgb(65, 108, 199);
+    color: white;
+  }
+  #delete {
+    background-color: rgb(244, 67, 54);
+    color: white;
+  }
+  
+  /* Estilo para los iconos dentro de los botones */
+
+  
+  /* Otros estilos */
+  .product-image {
+    width: auto;
+    height: 300px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .example-card {
+    width: 300px;
+    margin: 20px;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  .mat-card-actions {
+    display: flex;
+    justify-content: center;
+  }
+  
+button.mat-flat-button {
+  margin-bottom: 3px;
+  color: rgba(255, 253, 252, 0.925);
+  background-color: rgb(69, 148, 179);
+}
+
+

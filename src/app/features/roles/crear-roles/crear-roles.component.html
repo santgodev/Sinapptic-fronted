@@ -1,0 +1,37 @@
+<!-- Plantilla HTML -->
+<div class="modal-dialog modal-lg container">  
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="formModalLabel">
+        Crear rol
+        <mat-icon class="modal-icon">add</mat-icon>
+      </h5>
+      <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close"
+        (click)="closeFormModal()"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="formRol">
+        <div class="row">
+          <!-- NOMBRE_ROL -->
+          <div class="col-md-6 mb-3"
+            [ngClass]="{'has-error': formRol.get('NOMBRE_ROL')?.invalid && formRol.get('NOMBRE_ROL')?.touched}">
+            <label for="NOMBRE_ROL" class="form-label">NOMBRE DE ROL</label>
+            <input type="text" class="form-control" id="NOMBRE_ROL" name="NOMBRE_ROL" formControlName="NOMBRE_ROL">
+            <span *ngIf="formRol.get('NOMBRE_ROL')?.invalid && formRol.get('NOMBRE_ROL')?.touched"
+              class="text-danger">✖</span>
+          </div>
+
+          <!-- DESCRIPCION -->
+          <div class="col-md-6 mb-3"
+            [ngClass]="{'has-error': formRol.get('DESCRIPCION')?.invalid && formRol.get('DESCRIPCION')?.touched}">
+            <label for="DESCRIPCION" class="form-label">DESCRIPCIÓN</label>
+            <input type="text" class="form-control" id="DESCRIPCION" name="DESCRIPCION" formControlName="DESCRIPCION">
+            <span *ngIf="formRol.get('DESCRIPCION')?.invalid && formRol.get('DESCRIPCION')?.touched"
+              class="text-danger">✖</span>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-custom w-100" (click)="crearRol(formRol.getRawValue())" [disabled]="formRol.invalid">Crear Rol</button>
+      </form>
+    </div>
+  </div>
+</div>
