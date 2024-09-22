@@ -11,7 +11,7 @@ import { LocalDatePipe } from './pipes/local-date.pipe';
 import { YesNoPipe } from './pipes/yes-no.pipe';
 import { LayoutComponent } from './layout/layout.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { MatTableModule } from '@angular/material/table';
+import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy-table';
 
 @NgModule({
     imports: [

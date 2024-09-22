@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Activo } from 'src/app/core/models/activoModel';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { activoService } from 'src/app/core/services/clientes/activo.service';
 import { ClientesService } from 'src/app/core/services/clientes/clientes.service';
 import { Cliente } from 'src/app/core/models/clienteModel';

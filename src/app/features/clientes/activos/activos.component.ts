@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { Title } from '@angular/platform-browser';
 import { NGXLogger } from 'ngx-logger';
 import { ClientesService } from 'src/app/core/services/clientes/clientes.service';
