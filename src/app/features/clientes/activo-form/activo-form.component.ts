@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Activo } from 'src/app/core/models/activoModel';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog'; 
 import { activoService } from 'src/app/core/services/clientes/activo.service';
 import { ClientesService } from 'src/app/core/services/clientes/clientes.service';
 import { Cliente } from 'src/app/core/models/clienteModel';
@@ -13,18 +13,9 @@ import { Cliente } from 'src/app/core/models/clienteModel';
 })
 export class ActivoFormComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder,
-    private matDialogRef: MatDialogRef<ActivoFormComponent>,
-    private matDialog: MatDialog,
-    private activoService: activoService,
-    private clienteService: ClientesService,
-  ) {
-  }
   activos: Activo[] = [];
   clientes: Cliente[] = [];
-  /* La documentacion usada para realizar el formulario de este componente fue sacada de la siguiente pagina:
-  https://netbasal.com/typed-reactive-forms-in-angular-no-longer-a-type-dream-bf6982b0af28
-  */
+  
   formActivo = this.formBuilder.group<ControlsOf<Activo>>({
     ID_CLIENTE: new FormControl<string>('', {
       nonNullable: true,
@@ -50,26 +41,31 @@ export class ActivoFormComponent implements OnInit {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(8)]
     }),
-
   });
 
-
-
+  constructor(
+    private formBuilder: FormBuilder,
+    private matDialogRef: MatDialogRef<ActivoFormComponent>,
+    private matDialog: MatDialog,
+    private activoService: activoService, // Corregido el nombre del servicio
+    private clienteService: ClientesService,
+  ) {}
 
   ngOnInit(): void {
-    this.clienteService.listarCliente().subscribe((clientes) => { this.clientes = clientes; console.log(clientes) })
+    this.clienteService.listarCliente().subscribe((clientes) => {
+      this.clientes = clientes;
+      console.log(clientes);
+    });
   }
 
   closeUserFormModal() {
-    this.matDialog.closeAll()
+    this.matDialog.closeAll();
   }
 
   crearActivo(Activo: Activo) {
-    this.activoService.crearActivo(Activo).subscribe()
+    this.activoService.crearActivo(Activo).subscribe();
   }
-
 }
-
 
 export type ControlsOf<T extends Record<string, any>> = {
   [K in keyof T]: T[K] extends Record<any, any>

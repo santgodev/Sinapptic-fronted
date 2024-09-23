@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './core/guards/auth.guard';
 import { LayoutComponent } from './shared/layout/layout.component';
 
 const appRoutes: Routes = [
@@ -58,7 +57,7 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(appRoutes)
   ],
-  exports: [RouterModule],
+  exports:[RouterModule],
   providers: []
 })
 export class AppRoutingModule { }

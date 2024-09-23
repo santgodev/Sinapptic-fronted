@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog'; // Actualizado
 import { Title } from '@angular/platform-browser';
 import { NGXLogger } from 'ngx-logger';
 import { ClientesService } from 'src/app/core/services/clientes/clientes.service';
@@ -13,27 +13,26 @@ import { ClienteFormComponent } from '../cliente-form/cliente-form.component';
 })
 export class VerClientesComponent implements OnInit {
 
-  displayedColumns: string[] = ['EMPRESA', 'NIT', 'TELEFONO', 'DIRECCION','INFORMACION','ACCIONES'];
+  displayedColumns: string[] = ['EMPRESA', 'NIT', 'TELEFONO', 'DIRECCION', 'INFORMACION', 'ACCIONES'];
   
   constructor(
     public clienteService: ClientesService,
     private logger: NGXLogger,
     private titleService: Title,
-    private matDialog: MatDialog,
+    private matDialog: MatDialog, // Actualizado
   ) { }
-
 
   ngOnInit() {
     this.titleService.setTitle('Sinapptic - Users');
     this.logger.log('Users loaded');
-    this.clienteService.listarCliente().subscribe()
-  }
-  openClienteFormModal() {
-    this.matDialog.open(ClienteFormComponent)
+    this.clienteService.listarCliente().subscribe();
   }
 
-  removeCliente(id:string){
-    this.clienteService.eliminarCliente(id).subscribe()
-    
+  openClienteFormModal() {
+    this.matDialog.open(ClienteFormComponent);
+  }
+
+  removeCliente(id: string) {
+    this.clienteService.eliminarCliente(id).subscribe();
   }
 }

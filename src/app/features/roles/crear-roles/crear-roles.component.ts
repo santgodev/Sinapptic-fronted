@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialogRef } from '@angular/material/dialog'; // Cambiado a MatDialogRef
 import { rolModel } from 'src/app/core/models/rolModel';
 import { RolService } from 'src/app/core/services/rol.service';
 
@@ -11,19 +11,6 @@ import { RolService } from 'src/app/core/services/rol.service';
 })
 export class CrearRolesComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder,
-    private matDialogRef: MatDialogRef<CrearRolesComponent>,
-    private matDialog: MatDialog,
-    private rolService: RolService
-  ) {
-  }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-  /* La documentacion usada para realizar el formulario de este componente fue sacada de la siguiente pagina: 
-  https://netbasal.com/typed-reactive-forms-in-angular-no-longer-a-type-dream-bf6982b0af28
-  */
-  // Formulario en TypeScript
   formRol = this.formBuilder.group<ControlsOf<rolModel>>({
     NOMBRE_ROL: new FormControl<string>('', {
       nonNullable: true,
@@ -43,13 +30,25 @@ export class CrearRolesComponent implements OnInit {
     }),
   });
 
+  constructor(
+    private formBuilder: FormBuilder,
+    private matDialogRef: MatDialogRef<CrearRolesComponent>, // Usar MatDialogRef
+    private rolService: RolService
+  ) {}
+
+  ngOnInit(): void {
+    // Inicializa cualquier dato necesario aquí
+  }
 
   crearRol(rol: rolModel) {
-    this.rolService.crearRol(rol).subscribe()
+    this.rolService.crearRol(rol).subscribe({
+      next: () => this.closeFormModal(),
+      error: (err) => console.error('Error al crear rol:', err)
+    });
   }
 
   closeFormModal() {
-    this.matDialog.closeAll()
+    this.matDialogRef.close(); // Cierra el diálogo específico
   }
 }
 

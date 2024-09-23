@@ -41,6 +41,8 @@ body {
 .mat-list-item,
 .mat-menu-item {
   font-size: 14px !important;
+  display: flex; /* Asegúrate de que se usen flexbox */
+  align-items: center; 
 }
 
 .command-wrapper button {
@@ -98,7 +100,8 @@ body {
 }
 
 p .mat-icon {
-  vertical-align: middle;
+  vertical-align:middle;
+  
 }
 
 .mat-slide-toggle.full-width {

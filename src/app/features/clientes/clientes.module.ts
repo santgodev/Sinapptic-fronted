@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { ClienteFormComponent } from './cliente-form/cliente-form.component';
-import { SharedModule } from "../../shared/shared.module";
+import { SharedModule } from '../../shared/shared.module';
 import { ActivosComponent } from './activos/activos.component';
-import { ActivoFormComponent } from './activo-form/activo-form.component'; // Importa ReactiveFormsModule
+import { ActivoFormComponent } from './activo-form/activo-form.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { VerClientesComponent } from './ver-clientes/ver-clientes.component';
@@ -22,8 +22,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     CommonModule,
     ClientesRoutingModule,
     SharedModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    MatIconModule // Asegúrate de agregar esto
   ],
 })
 export class ClientesModule { }

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'; // Cambiado a MatDialogRef y MAT_DIALOG_DATA
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -10,8 +10,10 @@ export class ConfirmDialogComponent {
   title: string;
   message: string;
 
-  constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogModel) {
+  constructor(
+    public dialogRef: MatDialogRef<ConfirmDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogModel
+  ) {
     this.title = data.title;
     this.message = data.message;
   }
@@ -31,7 +33,5 @@ export class ConfirmDialogComponent {
  * It has been kept here to keep it as part of shared component.
  */
 export class ConfirmDialogModel {
-
-  constructor(public title: string, public message: string) {
-  }
+  constructor(public title: string, public message: string) {}
 }

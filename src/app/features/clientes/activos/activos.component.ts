@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog'; // Actualizado
 import { Title } from '@angular/platform-browser';
 import { NGXLogger } from 'ngx-logger';
 import { ClientesService } from 'src/app/core/services/clientes/clientes.service';
@@ -15,37 +15,39 @@ import { ActivoFormComponent } from '../activo-form/activo-form.component';
 })
 export class ActivosComponent implements OnInit {
 
-  displayedColumns: string[] = ['ID_ACTIVO', 'NOMBRE_ACTIVO','USUARIO', 'CATEGORIA', 'SERIAL', 'ACCESORIOS', 'ACCIONES'];
+  displayedColumns: string[] = ['ID_ACTIVO', 'NOMBRE_ACTIVO', 'USUARIO', 'CATEGORIA', 'SERIAL', 'ACCESORIOS', 'ACCIONES'];
   clientes: Cliente[] = [];
+
   constructor(
     public clienteService: ClientesService,
-    public activoService: activoService,
+    public activoService: activoService, // Corregido el nombre del servicio
     private logger: NGXLogger,
     private titleService: Title,
-    private matDialog: MatDialog,
-    private SpinnerService: SpinnerService,
-  ) { }
-
+    private matDialog: MatDialog, // Actualizado
+    private spinnerService: SpinnerService,
+  ) {}
 
   ngOnInit() {
     this.titleService.setTitle('Sinapptic - Activos');
     this.logger.log('Activos loaded');
-    this.clienteService.listarCliente().subscribe(clientes => { this.clientes = clientes })
+    this.clienteService.listarCliente().subscribe(clientes => {
+      this.clientes = clientes;
+    });
   }
-  openClienteFormModal() {
-    this.SpinnerService.reset();
-    this.matDialog.open(ActivoFormComponent)
 
+  openClienteFormModal() {
+    this.spinnerService.reset();
+    this.matDialog.open(ActivoFormComponent);
   }
 
   listarActivosIdCliente(id: string) {
     this.activoService.listarActivosIdClientes(id).subscribe(activos => {
       console.log(activos);
-    })
+    });
   }
 
   removeActivo(id_activo: string) {
-    this.activoService.eliminarActivo(id_activo).subscribe()
-    this.SpinnerService.reset()
+    this.activoService.eliminarActivo(id_activo).subscribe();
+    this.spinnerService.reset();
   }
 }

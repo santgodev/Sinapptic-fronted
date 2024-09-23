@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UntypedFormControl, Validators, UntypedFormGroup } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -17,13 +16,11 @@ export class LoginComponent implements OnInit {
     loading!: boolean;
 
     constructor(private router: Router,
-        private titleService: Title,
         private notificationService: NotificationService,
         private authenticationService: AuthenticationService) {
     }
 
     ngOnInit() {
-        this.titleService.setTitle('angular-material-template - Login');
         this.authenticationService.logout();
         this.createForm();
     }
@@ -48,7 +45,6 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.router.navigate(['/dashboard']);
-                    console.clear
                 },
                 (error: HttpErrorResponse) => {
                     if (error.status === 401) {

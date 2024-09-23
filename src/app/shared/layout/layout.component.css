@@ -79,3 +79,22 @@ a.mat-list-item.active {
 .expandido {
   max-height: 500px; /* Altura máxima cuando está expandido */
 }
+
+
+mat-list-item {
+  display: flex;
+  align-items: center;  /* Alinea el ícono y el texto verticalmente */
+  justify-content: flex-start;
+  white-space: nowrap;  /* Evita que el texto se divida en varias líneas */
+}
+
+mat-icon {
+  flex-shrink: 5;  /* Evita que el ícono se reduzca de tamaño */
+  margin-right: 8px;  /* Espacio entre el ícono y el texto */
+}
+
+.item-text {
+  flex-grow: 1;  /* Permite que el texto ocupe todo el espacio disponible */
+  overflow: hidden;  /* Oculta el texto si es muy largo */
+  text-overflow: ellipsis;  /* Agrega "..." si el texto es demasiado largo */
+}

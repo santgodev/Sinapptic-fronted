@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog'; // Cambiado a MatDialog
 import { Title } from '@angular/platform-browser';
 import { NGXLogger } from 'ngx-logger';
 import { FormUserCreateComponent } from '../../users/form-user-create/form-user-create.component';
@@ -14,34 +14,33 @@ import { RolService } from 'src/app/core/services/rol.service';
 })
 export class VerRolesComponent implements OnInit {
 
-  displayedColumns: string[] = ['ID_ROL', 'NOMBRE_ROL', 'DESCRIPCION','ACCIONES'];
+  displayedColumns: string[] = ['ID_ROL', 'NOMBRE_ROL', 'DESCRIPCION', 'ACCIONES'];
+
   constructor(
     public rolService: RolService,
     private logger: NGXLogger,
     private titleService: Title,
-    private matDialog: MatDialog,
-    private SpinnerService: SpinnerService,
+    private matDialog: MatDialog, // Usar MatDialog en lugar de MatLegacyDialog
+    private spinnerService: SpinnerService, // Cambiado a minúscula para seguir las convenciones
   ) { }
   
   ngOnInit() {
     this.titleService.setTitle('Sinapptic - Roles');
-    this.logger.log('Users loaded');
+    this.logger.log('Roles loaded'); // Cambiado a 'Roles loaded'
     this.rolService.listarRoles().subscribe();
   }
+
   openUserFormModal() {
-    this.matDialog.open(FormUserCreateComponent)
-    this.SpinnerService.reset();
-
+    this.spinnerService.reset(); // Llama primero al spinner
+    this.matDialog.open(FormUserCreateComponent);
   }
+
   openRolFormModal() {
-    this.matDialog.open(CrearRolesComponent)
-    this.SpinnerService.reset();
-
+    this.spinnerService.reset(); // Llama primero al spinner
+    this.matDialog.open(CrearRolesComponent);
   }
-  removeRol(id:string){
+
+  removeRol(id: string) {
     this.rolService.eliminarRol(id).subscribe();
   }
 }
-
- 
-

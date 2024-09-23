@@ -11,19 +11,20 @@ import { LocalDatePipe } from './pipes/local-date.pipe';
 import { YesNoPipe } from './pipes/yes-no.pipe';
 import { LayoutComponent } from './layout/layout.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy-table';
+import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu'; // Importar MatMenuModule
 
 @NgModule({
     imports: [
         RouterModule,
         CustomMaterialModule,
-        FormsModule,
-        ReactiveFormsModule,
+        MatTableModule, // Asegúrate de que esté aquí si es necesario
+        MatMenuModule, // Agregar el módulo de menú
         FlexLayoutModule,
-        MatTableModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
-        ConfirmDialogComponent,
         ContentPlaceholderAnimationComponent,
         LimitToPipe,
         LocalDatePipe,
@@ -36,13 +37,13 @@ import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy
         ReactiveFormsModule,
         FlexLayoutModule,
         CustomMaterialModule,
+        MatTableModule,
+        MatMenuModule, // Exportar el módulo de menú
         LimitToPipe,
-        ConfirmDialogComponent,
         ContentPlaceholderAnimationComponent,
         LocalDatePipe,
         YesNoPipe,
-        SpinnerComponent,
-        MatTableModule
+        SpinnerComponent
     ]
 })
 export class SharedModule { }

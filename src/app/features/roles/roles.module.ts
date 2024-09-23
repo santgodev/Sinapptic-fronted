@@ -6,7 +6,7 @@ import { CrearRolesComponent } from './crear-roles/crear-roles.component';
 import { VerRolesComponent } from './ver-roles/ver-roles.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy-table';
+import { MatTableModule } from '@angular/material/table'; // Cambiado a MatTableModule
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
@@ -15,7 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     RolesRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatTableModule // Agregado MatTableModule a los imports
   ]
 })
 export class RolesModule { }
